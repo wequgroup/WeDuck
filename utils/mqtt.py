@@ -2,7 +2,7 @@ import _thread
 import json
 import time
 from threading import Event
-
+from utils.base_play import Play
 import paho.mqtt.client as mqtt
 from PySide2.QtWidgets import QMainWindow
 
@@ -24,7 +24,6 @@ class MQTT:
         self.username = user_name
         self.win: QMainWindow = win
         self.event = Event()
-        _thread.start_new_thread(self.stop_mq, ())
 
     def on_disconnect(self, rc, a, b):
         while rc != 0 and rc != 5:
@@ -49,13 +48,19 @@ class MQTT:
 
     def on_message(self, client, userdata, rc):
         msg = rc.payload
-        try:
-            params = json.loads(msg)
-            # shell_play = Play(params, self.win)
-            # shell_play.run()
-        except Exception as e:
-            self.win.log("指令已下发但未执行：" + str(e))
-            return False
+        params = json.loads(msg)
+        if type(params) is not int:
+            shell_play = Play(params, self.win)
+            shell_play.run()
+        # try:
+        #     params = json.loads(msg)
+        #     if type(params) is not int:
+        #         shell_play = Play(params, self.win)
+        #         shell_play.run()
+        # except Exception as e:
+        #     print(e)
+        #     self.win.log("指令已下发但未执行：" + str(e))
+        #     return False
         return True
 
     def ping(self):
@@ -70,6 +75,7 @@ class MQTT:
     def start(self):
         # 连接到MQTT服务器
         self.win.log("连接服务器中...")
+        _thread.start_new_thread(self.stop_mq, ())
         rc = self.client.connect(self.host, self.port)
         if rc == 0:
             self.client.subscribe(topic=str("duck/" + self.username), qos=0)
@@ -84,6 +90,7 @@ class MQTT:
             if g.STOP_MQ:
                 self.close_mq()
                 break
+            time.sleep(0.15)
 
     def close_mq(self):
         g.STOP_MQ = True

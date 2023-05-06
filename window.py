@@ -2,10 +2,10 @@ import _thread
 import os
 import time
 
-from PySide2.QtCore import Slot, Qt
+from PySide2.QtCore import Slot
 from PySide2.QtGui import QColor, QIcon
 from PySide2.QtWidgets import QMainWindow, QSystemTrayIcon, \
-    QAction, QMenu, QApplication, QVBoxLayout, QHBoxLayout, QLabel, QDialog, QWidget
+    QAction, QMenu, QApplication
 
 from ui import Ui_MainWindow
 from utils import config
@@ -25,7 +25,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.icon = QIcon(os.path.join(os.getcwd(), "icon.png"))
         self.init_app()
         self.init_connect()
-        self.dialog = Dialog()
 
     def log(self, msg):
         log_time = time.strftime("%m-%d %H:%M", time.localtime())
@@ -47,7 +46,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if auto_online == "yes":
             self.AutoOnlineCheckBox.setChecked(True)
-            self.device.login()
+            self.login_btn_click()
 
     def init_connect(self):
         # 连接服务器
@@ -63,7 +62,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def create_tray_icon(self):
         restore_app = QAction('显示应用', self, triggered=self.show_window)
         exit_app = QAction('退出应用', self, triggered=QApplication.instance().quit)
-
         menu = QMenu(self)
         menu.addAction(restore_app)
         menu.addAction(exit_app)
@@ -74,7 +72,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @Slot()
     def login_btn_click(self):
-        _thread.start_new_thread(self.device.login, ())
+        self.device.run()
 
     @Slot()
     def logout_btn_click(self):
@@ -83,8 +81,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @Slot()
     def script_btn_click(self):
         self.hide()
-        self.dialog.show()
-        # _thread.start_new_thread(self.script.record_script, ())
+        _thread.start_new_thread(self.script.record_script, ())
 
     @Slot()
     def my_script_btn_click(self):
@@ -95,21 +92,3 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.show()
         else:
             self.showNormal()
-
-
-class Dialog(QDialog):
-    def __init__(self):
-        super().__init__()
-        self.desktop = QApplication.desktop()
-        vbox = QVBoxLayout()  # 纵向布局
-        hbox = QHBoxLayout()  # 横向布局
-        panel = QLabel()
-        panel.setText("按下 Esc 键结束录制")
-        self.resize(250, 70)
-        self.setWindowTitle("正在录制中")
-        vbox.addWidget(panel)
-        vbox.addLayout(hbox)
-        self.setLayout(vbox)
-        self.setWindowFlags(Qt.WindowStaysOnTopHint)
-        self.move(int(self.desktop.width() / 2.89), 0)
-        self.setWindowModality(Qt.ApplicationModal)

@@ -1,16 +1,8 @@
 # -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'ui.ui'
-##
-## Created by: Qt User Interface Compiler version 5.15.2
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
+from PySide2.QtCore import QRect, QCoreApplication, QMetaObject
+from PySide2.QtGui import QCursor, Qt
+from PySide2.QtWidgets import QWidget, QPushButton, QTabWidget, QCheckBox, QLineEdit, QLabel, QListWidget, QTextEdit, \
+    QStatusBar
 
 
 class Ui_MainWindow(object):

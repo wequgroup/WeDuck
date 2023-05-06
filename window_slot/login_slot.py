@@ -1,6 +1,6 @@
 import requests
-from PySide2.QtCore import QThread
-from PySide2.QtWidgets import QMainWindow
+from PySide2.QtCore import QThread, Signal
+from PySide2.QtWidgets import QMainWindow, QApplication
 from PySide2.QtWidgets import QMessageBox
 
 import g
@@ -8,8 +8,11 @@ from utils import config
 from utils.mqtt import MQTT
 
 
-class Login():
+class Login(QThread):
+    login_signal = Signal()
+
     def __init__(self, window: QMainWindow):
+        super().__init__()
         self.win: QMainWindow = window
         self.device_id: str = ""
         self.device_password: str = ""
@@ -19,7 +22,7 @@ class Login():
         self.win.LoginButton.setDisabled(False)
         self.win.LoginButton.setText("连接服务器")
 
-    def login(self):
+    def run(self):
         self.win.log("正在校验设备信息...")
         self.win.LoginButton.setText("连接中...")
         self.win.LoginButton.setDisabled(True)

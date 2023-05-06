@@ -1,21 +1,27 @@
+import json
 import time
-
+import os
 from pynput import mouse, keyboard
+
+script_path = os.path.join(os.getcwd(), "script")
 
 
 class ActionRecord:
     def __init__(self, name):
         self.name = name
-        self.thread_mouse = mouse.Listener(on_click=self.on_mouse_click, on_scroll=self.on_scroll)
-        self.thread_keyboard = keyboard.Listener(on_press=self.on_keyboard_press, on_release=self.on_keyboard_release)
+        self.thread_mouse = None
+        self.thread_keyboard = None
         self.record = []
 
     def run(self):
-        with self.thread_mouse as m, self.thread_keyboard as k:
-            m.join()
-            k.join()
+        with mouse.Listener(on_click=self.on_mouse_click, on_scroll=self.on_scroll) as self.thread_mouse, \
+                keyboard.Listener(on_press=self.on_keyboard_press,
+                                  on_release=self.on_keyboard_release) as self.thread_keyboard:
+            self.thread_mouse.join()
+            self.thread_keyboard.join()
 
     def on_mouse_click(self, x, y, click, pressed):
+        print("mo")
         self.record.append({'x': x, "y": y, "button": str(click), "action": "pressed" if pressed else 'released',
                             "_time": time.time()})
 
@@ -25,6 +31,7 @@ class ActionRecord:
         :param key:
         :return:
         """
+        print("key")
         if key != keyboard.Key.esc:
             try:
                 self.record.append({"key": key.char, "action": "pressed_key", "_time": time.time()})
@@ -40,7 +47,10 @@ class ActionRecord:
         if key == keyboard.Key.esc:
             self.thread_mouse.stop()
             self.thread_keyboard.stop()
-            print(self.record)
+            if not os.path.exists(script_path):
+                os.makedirs(script_path)
+            with open(os.path.join(script_path, self.name), mode="w", encoding="utf-8") as s:
+                s.write(json.dumps(self.record))
         else:
             try:
                 self.record.append({"key": key.char, "action": "released_key", "_time": time.time()})
