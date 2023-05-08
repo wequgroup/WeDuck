@@ -1,5 +1,6 @@
 import _thread
 import os
+import sys
 import time
 
 from PySide2.QtCore import Slot
@@ -11,15 +12,19 @@ from ui import Ui_MainWindow
 from utils import config
 from window_slot.login_slot import Login
 from window_slot.script_slot import Script
+from window_slot.update_slot import Update
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
+
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         # 日志颜色
         c = QColor(112, 128, 105)
         self.LogList.setTextColor(c)
+        self.version = config.get("app", "version")
+        self.os = sys.platform
         self.device = Login(self)
         self.script = Script(self)
         self.icon = QIcon(os.path.join(os.getcwd(), "icon.png"))
@@ -32,8 +37,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def init_app(self):
         # 获取版本号
-        version = config.get("app", "version")
-        self.setWindowTitle("微趣鸭 v" + version)
+        self.VersionLabel.setText("当前版本：V" + self.version)
+        self.OS_Label.setText("当前系统：" + self.os)
+        self.setWindowTitle("微趣鸭 v" + self.version)
         self.setWindowIcon(self.icon)
         self.create_tray_icon()
         # 获取设备账号密码
@@ -57,6 +63,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ScriptButton.clicked.connect(self.script_btn_click)
         # 查看录制脚本
         self.MyScriptButton.clicked.connect(self.my_script_btn_click)
+        # 更新版本
+        self.UpdateButton.clicked.connect(self.update_btn_click)
 
     # 创建托盘图标
     def create_tray_icon(self):
@@ -72,7 +80,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @Slot()
     def login_btn_click(self):
-        self.device.run()
+        up = Update(self)
+        if up.update(self.version, self.os) is not True:
+            self.device.run()
+        else:
+            self.LoginButton.setDisabled(True)
 
     @Slot()
     def logout_btn_click(self):
@@ -86,6 +98,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @Slot()
     def my_script_btn_click(self):
         self.script.show_script()
+
+    @Slot()
+    def update_btn_click(self):
+        up = Update(self)
+        up.update(self.version, self.os)
 
     def show_window(self):
         if self.isVisible() is False:

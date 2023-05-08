@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
-from PySide2.QtCore import QRect, QCoreApplication, QMetaObject
-from PySide2.QtGui import QCursor, Qt
-from PySide2.QtWidgets import QWidget, QPushButton, QTabWidget, QCheckBox, QLineEdit, QLabel, QListWidget, QTextEdit, \
-    QStatusBar
+
+################################################################################
+## Form generated from reading UI file 'ui.ui'
+##
+## Created by: Qt User Interface Compiler version 5.15.2
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 
 
 class Ui_MainWindow(object):
@@ -46,18 +54,40 @@ class Ui_MainWindow(object):
         self.LogoutButton.setEnabled(False)
         self.LogoutButton.setGeometry(QRect(140, 224, 151, 30))
         self.LogoutButton.setCheckable(False)
+        self.label_8 = QLabel(self.tab)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setGeometry(QRect(140, 20, 111, 16))
+        self.label_8.setOpenExternalLinks(True)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
-        self.listWidget = QListWidget(self.tab_2)
-        self.listWidget.setObjectName(u"listWidget")
-        self.listWidget.setGeometry(QRect(20, 57, 351, 221))
         self.ScriptButton = QPushButton(self.tab_2)
         self.ScriptButton.setObjectName(u"ScriptButton")
         self.ScriptButton.setGeometry(QRect(30, 13, 160, 30))
         self.MyScriptButton = QPushButton(self.tab_2)
         self.MyScriptButton.setObjectName(u"MyScriptButton")
         self.MyScriptButton.setGeometry(QRect(195, 13, 160, 30))
+        self.TipBox = QGroupBox(self.tab_2)
+        self.TipBox.setObjectName(u"TipBox")
+        self.TipBox.setGeometry(QRect(19, 160, 351, 121))
+        self.label_3 = QLabel(self.TipBox)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(10, 30, 291, 16))
+        self.label_4 = QLabel(self.TipBox)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(10, 50, 291, 16))
+        self.label_5 = QLabel(self.TipBox)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setGeometry(QRect(10, 70, 321, 16))
+        self.label_6 = QLabel(self.TipBox)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setGeometry(QRect(10, 90, 331, 16))
+        self.label_7 = QLabel(self.tab_2)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(60, 65, 101, 16))
+        self.ScriptNameEdit = QLineEdit(self.tab_2)
+        self.ScriptNameEdit.setObjectName(u"ScriptNameEdit")
+        self.ScriptNameEdit.setGeometry(QRect(170, 60, 171, 25))
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_4 = QWidget()
         self.tab_4.setObjectName(u"tab_4")
@@ -68,6 +98,15 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_4, "")
         self.tab_3 = QWidget()
         self.tab_3.setObjectName(u"tab_3")
+        self.UpdateButton = QPushButton(self.tab_3)
+        self.UpdateButton.setObjectName(u"UpdateButton")
+        self.UpdateButton.setGeometry(QRect(80, 20, 221, 32))
+        self.VersionLabel = QLabel(self.tab_3)
+        self.VersionLabel.setObjectName(u"VersionLabel")
+        self.VersionLabel.setGeometry(QRect(113, 110, 151, 16))
+        self.OS_Label = QLabel(self.tab_3)
+        self.OS_Label.setObjectName(u"OS_Label")
+        self.OS_Label.setGeometry(QRect(112, 140, 151, 16))
         self.tabWidget.addTab(self.tab_3, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
@@ -76,7 +115,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -89,11 +128,21 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u5907\u5bc6\u94a5:", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u5907\u7f16\u53f7:", None))
         self.LogoutButton.setText(QCoreApplication.translate("MainWindow", u"\u65ad\u5f00\u8fde\u63a5", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<a href=\"https://app.wequ.net/duck/device\">\u8bbf\u95ee\u8bbe\u5907\u7ba1\u7406\u540e\u53f0</a>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u8bbe\u5907\u7ba1\u7406", None))
         self.ScriptButton.setText(QCoreApplication.translate("MainWindow", u"\u5f55\u5236\u65b0\u811a\u672c", None))
         self.MyScriptButton.setText(QCoreApplication.translate("MainWindow", u"\u67e5\u770b\u6211\u7684\u811a\u672c", None))
+        self.TipBox.setTitle(QCoreApplication.translate("MainWindow", u"\u5f55\u5236\u63d0\u793a", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"1.  \u6309\u4e0b\u5f55\u5236\u811a\u672c\u6309\u94ae\uff0c\u7a0b\u5e8f\u9690\u85cf\uff0c\u5f00\u59cb\u5f55\u5236", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"2.  \u7a0b\u5e8f\u4f1a\u5f55\u5236\u6240\u6709\u4f60\u7684\u952e\u76d8\u9f20\u6807\u8bb0\u5f55", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"3.  \u6309\u4e0bEsc\u952e\u7ed3\u675f\u5f55\u5236\uff0c\u4e0a\u65b9\u4f1a\u663e\u793a\u4f60\u7684\u811a\u672cID", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"4.  \u811a\u672cID\u4e3a\u6587\u4ef6\u540d\u79f0[\u4e0d\u5e26.txt]\uff0c\u67e5\u770b\u6211\u7684\u811a\u672c\u53ef\u770b\u5230", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u5f55\u5236\u7684\u811a\u672cID\u4e3a\uff1a", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"\u811a\u672c\u5f55\u5236", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"\u8fd0\u884c\u65e5\u5fd7", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"\u5173\u4e8e\u5e94\u7528", None))
+        self.UpdateButton.setText(QCoreApplication.translate("MainWindow", u"\u83b7\u53d6\u65b0\u7248\u672c", None))
+        self.VersionLabel.setText(QCoreApplication.translate("MainWindow", u"\u5f53\u524d\u7248\u672c\uff1aV1.0.1", None))
+        self.OS_Label.setText(QCoreApplication.translate("MainWindow", u"\u5f53\u524d\u7cfb\u7edf\uff1aV1.0.1", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"\u68c0\u6d4b\u66f4\u65b0", None))
     # retranslateUi
 

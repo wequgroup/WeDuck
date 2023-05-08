@@ -18,6 +18,7 @@ class Script:
         self.win.log("脚本录制成功，名称为：" + self.script_name)
         self.win.ScriptButton.setText("录制新脚本")
         self.win.show()
+        self.win.ScriptNameEdit.setText(self.script_name)
 
     def show_script(self):
         script_path = os.path.join(os.getcwd(), "script")

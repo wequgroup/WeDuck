@@ -30,7 +30,7 @@
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -139,21 +139,27 @@
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>20</y>
+        <width>111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;a href=&quot;https://app.wequ.net/duck/device&quot;&gt;访问设备管理后台&lt;/a&gt;</string>
+      </property>
+      <property name="openExternalLinks">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>脚本录制</string>
      </attribute>
-     <widget class="QListWidget" name="listWidget">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>57</y>
-        <width>351</width>
-        <height>221</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="ScriptButton">
       <property name="geometry">
        <rect>
@@ -180,6 +186,94 @@
        <string>查看我的脚本</string>
       </property>
      </widget>
+     <widget class="QGroupBox" name="TipBox">
+      <property name="geometry">
+       <rect>
+        <x>19</x>
+        <y>160</y>
+        <width>351</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>录制提示</string>
+      </property>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>291</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>1.  按下录制脚本按钮，程序隐藏，开始录制</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>291</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>2.  程序会录制所有你的键盘鼠标记录</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>321</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>3.  按下Esc键结束录制，上方会显示你的脚本ID</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>331</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>4.  脚本ID为文件名称[不带.txt]，查看我的脚本可看到</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>65</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>录制的脚本ID为：</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="ScriptNameEdit">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>60</y>
+        <width>171</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -201,8 +295,47 @@
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
-      <string>关于应用</string>
+      <string>检测更新</string>
      </attribute>
+     <widget class="QPushButton" name="UpdateButton">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>20</y>
+        <width>221</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>获取新版本</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VersionLabel">
+      <property name="geometry">
+       <rect>
+        <x>113</x>
+        <y>110</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>当前版本：V1.0.1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="OS_Label">
+      <property name="geometry">
+       <rect>
+        <x>112</x>
+        <y>140</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>当前系统：V1.0.1</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
