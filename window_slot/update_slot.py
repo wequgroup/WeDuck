@@ -1,9 +1,11 @@
 import json
 import os
 import re
+import sys
 
 import requests
-from PySide2.QtWidgets import QMessageBox
+from PySide2.QtWidgets import QMessageBox, QApplication
+import _thread
 
 root_path = os.getcwd()
 
@@ -30,8 +32,10 @@ class Update:
             reply = msg_box.exec()
             if reply == QMessageBox.Yes:
                 self.win.setWindowTitle("正在下载新版,请稍后...")
-                self.download(app_os_info["url"])
+                _thread.start_new_thread(self.download, (app_os_info["url"],))
                 return True
+        else:
+            self.win.UpdateButton.setText("没有发现新版本")
         return False
 
     def download(self, url: str):
@@ -48,7 +52,13 @@ class Update:
                 for data in res.iter_content(chunk_size=chunk_size):
                     f.write(data)
                     size += len(data)  # 已下载文件大小
-                    self.win.setWindowTitle("正在下载新版 - %s" % str(int(size / content_size * 100)))
+                    self.win.LoginButton.setText("正在更新： %s" % str(int(size / content_size * 100)) + "%")
+                    self.win.UpdateButton.setText("正在更新： %s" % str(int(size / content_size * 100)) + "%")
+            self.win.LoginButton.setText("更新成功")
+            self.win.UpdateButton.setText("更新成功")
+            _thread.start_new_thread(os.system, (os.path.join(root_path, file_name),))
+            app = QApplication.instance()
+            app.quit()
 
     def get_lanzou(self, url):
         lanzou_id = re.findall("com/(.+)", url)[0]

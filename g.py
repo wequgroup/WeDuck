@@ -1,1 +1,2 @@
 STOP_MQ = False
+VERSION = 20230508

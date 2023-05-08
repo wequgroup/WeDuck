@@ -3,10 +3,11 @@ import os
 import sys
 import time
 
+from PySide2 import QtGui
 from PySide2.QtCore import Slot
 from PySide2.QtGui import QColor, QIcon
 from PySide2.QtWidgets import QMainWindow, QSystemTrayIcon, \
-    QAction, QMenu, QApplication
+    QAction, QMenu, QApplication, QMessageBox
 
 from ui import Ui_MainWindow
 from utils import config
@@ -109,3 +110,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.show()
         else:
             self.showNormal()
+
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, '退出?', "Yes 退出应用；No 后台运行应用", QMessageBox.Yes | QMessageBox.No,
+                                     QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            self.hide()
+            event.ignore()
