@@ -69,7 +69,7 @@ class Ui_MainWindow(object):
         self.MyScriptButton.setGeometry(QRect(195, 13, 160, 30))
         self.TipBox = QGroupBox(self.tab_2)
         self.TipBox.setObjectName(u"TipBox")
-        self.TipBox.setGeometry(QRect(19, 160, 351, 121))
+        self.TipBox.setGeometry(QRect(20, 100, 351, 111))
         self.label_3 = QLabel(self.TipBox)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(10, 30, 291, 16))
@@ -88,6 +88,9 @@ class Ui_MainWindow(object):
         self.ScriptNameEdit = QLineEdit(self.tab_2)
         self.ScriptNameEdit.setObjectName(u"ScriptNameEdit")
         self.ScriptNameEdit.setGeometry(QRect(170, 60, 171, 25))
+        self.label_9 = QLabel(self.tab_2)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setGeometry(QRect(20, 230, 351, 41))
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_4 = QWidget()
         self.tab_4.setObjectName(u"tab_4")
@@ -115,7 +118,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -138,6 +141,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"3.  \u6309\u4e0bEsc\u952e\u7ed3\u675f\u5f55\u5236\uff0c\u4e0a\u65b9\u4f1a\u663e\u793a\u4f60\u7684\u811a\u672cID", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"4.  \u811a\u672cID\u4e3a\u6587\u4ef6\u540d\u79f0[\u4e0d\u5e26.txt]\uff0c\u67e5\u770b\u6211\u7684\u811a\u672c\u53ef\u770b\u5230", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u5f55\u5236\u7684\u811a\u672cID\u4e3a\uff1a", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Mac\u7cfb\u7edf\u7528\u6237\u8bf7\u5728\u7cfb\u7edf\u8bbe\u7f6e-\u5b89\u5168\u4e0e\u9690\u79c1-\u8f85\u52a9\u529f\u80fd-\u6dfb\u52a0\u5e94\u7528<br/>\u7136\u540e\u5728\u8f93\u5165\u76d1\u63a7-\u6dfb\u52a0\u5e94\u7528\uff0c\u5426\u5219\u65e0\u6cd5\u5f55\u5236\u811a\u672c</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"\u811a\u672c\u5f55\u5236", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"\u8fd0\u884c\u65e5\u5fd7", None))
         self.UpdateButton.setText(QCoreApplication.translate("MainWindow", u"\u83b7\u53d6\u65b0\u7248\u672c", None))

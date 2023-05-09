@@ -24,7 +24,6 @@ class ActionRecord:
             self.thread_keyboard.join()
 
     def on_mouse_click(self, x, y, click, pressed):
-        print("mo")
         self.record.append({'x': x, "y": y, "button": str(click), "action": "pressed" if pressed else 'released',
                             "_time": time.time()})
 
@@ -34,7 +33,6 @@ class ActionRecord:
         :param key:
         :return:
         """
-        print("key")
         if key != keyboard.Key.esc:
             try:
                 self.record.append({"key": key.char, "action": "pressed_key", "_time": time.time()})

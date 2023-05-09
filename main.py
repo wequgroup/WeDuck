@@ -1,7 +1,7 @@
 import argparse
 import os
 import sys
-
+sys.stdout = open(os.devnull, 'w')
 if sys.platform == "darwin":
     os.environ['QT_MAC_WANTS_LAYER'] = '1'
 from PySide2.QtCore import QLockFile

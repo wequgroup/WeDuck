@@ -30,7 +30,7 @@
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -189,10 +189,10 @@
      <widget class="QGroupBox" name="TipBox">
       <property name="geometry">
        <rect>
-        <x>19</x>
-        <y>160</y>
+        <x>20</x>
+        <y>100</y>
         <width>351</width>
-        <height>121</height>
+        <height>111</height>
        </rect>
       </property>
       <property name="title">
@@ -272,6 +272,19 @@
         <width>171</width>
         <height>25</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>230</y>
+        <width>351</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Mac系统用户请在系统设置-安全与隐私-辅助功能-添加应用&lt;br/&gt;然后在输入监控-添加应用，否则无法录制脚本&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>

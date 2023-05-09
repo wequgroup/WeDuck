@@ -47,7 +47,7 @@ else:
     pyinstaller_path = os.path.join(root_path, "venv", "bin", "pyinstaller")
     del_mod_list = []
 
-local = False
+local = True
 if local is not True:
     pyinstaller_path = "pyinstaller"
 
@@ -64,3 +64,9 @@ for d in del_mod_list:
 print("delete translate")
 local_rm(os.path.join(del_path, "translations"))
 print("done dir:" + os.path.join(os.getcwd(), "dist", "WeDuck"))
+
+"""
+
+create-dmg --volname "WeDuck" --window-pos 200 220 --window-size 500 300 --icon-size 100 --icon "WeDuck.app" 100 100 --hide-extension "WeDuck.app" --app-drop-link 300 100 "WeDuckInstaller.dmg" "dist/WeDuck.app"
+
+"""

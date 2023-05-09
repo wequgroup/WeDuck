@@ -33,6 +33,10 @@ jobs:
         with:
           python-version: 3.7.15
 
+      - name: Installer Create DMG
+        if: matrix.os == 'macos-latest'
+        run: brew install create-dmg
+
       - name: Install Requirement
         run: pip install -r requirements.txt
 
@@ -43,8 +47,18 @@ jobs:
         if: matrix.os == 'windows-latest'
         uses: joncloud/makensis-action@v4
 
-      - name: Upload artifact (windows)
+      - name: Create Dmg (Mac)
+        if: matrix.os == 'macos-latest'
+        run: create-dmg --volname "WeDuck" --window-pos 200 220 --window-size 500 300 --icon-size 100 --icon "WeDuck.app" 100 100 --hide-extension "WeDuck.app" --app-drop-link 300 100 "WeDuckInstaller.dmg" "dist/WeDuck.app"
+
+      - name: Upload Exe (windows)
         if: matrix.os == 'windows-latest'
         uses: actions/upload-artifact@v3
         with:
           path: WeDuckInstall.exe
+
+      - name: Upload Dmg (Mac)
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v3
+        with:
+          path: rw.WeDuckInstaller.dmg
