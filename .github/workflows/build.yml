@@ -50,16 +50,11 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: create-dmg --volname "WeDuck" --window-pos 200 220 --window-size 500 300 --icon-size 100 --icon "WeDuck.app" 100 100 --hide-extension "WeDuck.app" --app-drop-link 300 100 "WeDuckInstaller.dmg" "dist/WeDuck.app"
 
-      - name: Set aliyun oss
-        uses: manyuanrong/setup-ossutil@master
-        with:
-          endpoint: oss-cn-shenzhen.aliyuncs.com
-          access-key-id: ${{ secrets.OSS_KEY }}
-          access-key-secret: ${{ secrets.OSS_SECRET }}
-
       - name: Upload dmg
         if: matrix.os == 'macos-latest'
         uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           name: Release ${{ github.ref }}
@@ -69,7 +64,10 @@ jobs:
           files: WeDuckInstall.dmg
 
       - name: Upload exe
+        if: matrix.os == 'windows-latest'
         uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           name: Release ${{ github.ref }}
