@@ -63,4 +63,4 @@ for d in del_mod_list:
 
 print("delete translate")
 local_rm(os.path.join(del_path, "translations"))
-print("done dir：" + os.path.join(os.getcwd(), "dist", "WeDuck"))
+print("done dir:" + os.path.join(os.getcwd(), "dist", "WeDuck"))
