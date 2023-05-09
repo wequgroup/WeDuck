@@ -47,7 +47,7 @@ else:
     pyinstaller_path = os.path.join(root_path, "venv", "bin", "pyinstaller")
     del_mod_list = []
 
-local = True
+local = False
 if local is not True:
     pyinstaller_path = "pyinstaller"
 
