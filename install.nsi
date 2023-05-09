@@ -28,7 +28,7 @@ SetCompressor lzma
 ; 安装完成页面
 !define MUI_FINISHPAGE_SHOWREADME
 !define MUI_FINISHPAGE_SHOWREADME_Function AutoBoot
-!define MUI_FINISHPAGE_SHOWREADME_TEXT "添加开机启动"
+!define MUI_FINISHPAGE_SHOWREADME_TEXT "开机启动"
 !define MUI_FINISHPAGE_RUN "$INSTDIR\WeDuck.exe"
 !insertmacro MUI_PAGE_FINISH
 
