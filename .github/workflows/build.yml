@@ -58,7 +58,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: 20230509
+          automatic_release_tag: 20230509-mac
           name: Release ${{ github.ref }}
           title: WeDuckInstaller
           prerelease: false
@@ -69,7 +69,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: 20230509
+          automatic_release_tag: 20230509-win
           name: Release ${{ github.ref }}
           title: WeDuckInstaller
           prerelease: false
