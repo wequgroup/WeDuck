@@ -45,7 +45,10 @@ else:
     pyinstaller_path = os.path.join(root_path, "venv", "bin", "pyinstaller")
     del_mod_list = []
 
-print(pyinstaller_path)
+local = False
+if local is not True:
+    pyinstaller_path = "pyinstaller"
+
 print("正在打包...")
 subprocess.Popen("{} --clean {} -n WeDuck".format(pyinstaller_path, pkg_shell), stderr=subprocess.PIPE,
                  stdout=subprocess.PIPE, shell=True).stdout.readline()
