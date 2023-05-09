@@ -3,14 +3,14 @@ import os
 import sys
 import time
 
-from PySide2 import QtGui
 from PySide2.QtCore import Slot
 from PySide2.QtGui import QColor, QIcon
 from PySide2.QtWidgets import QMainWindow, QSystemTrayIcon, \
-    QAction, QMenu, QApplication, QMessageBox
+    QAction, QMenu, QApplication
 
 from ui import Ui_MainWindow
 from utils import config
+from utils.get_root_path import root_path
 from window_slot.login_slot import Login
 from window_slot.script_slot import Script
 from window_slot.update_slot import Update
@@ -28,7 +28,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.os = sys.platform
         self.device = Login(self)
         self.script = Script(self)
-        self.icon = QIcon(os.path.join(os.getcwd(), "icon.png"))
+        self.icon = QIcon(os.path.join(root_path, "icon.png"))
         self.init_app()
         self.init_connect()
 
@@ -112,10 +112,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.showNormal()
 
     def closeEvent(self, event):
-        reply = QMessageBox.question(self, '退出?', "Yes 退出应用；No 后台运行应用", QMessageBox.Yes | QMessageBox.No,
-                                     QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            event.accept()
-        else:
-            self.hide()
-            event.ignore()
+        """后台运行"""
+        self.hide()
+        event.ignore()

@@ -1,9 +1,12 @@
 import json
-import time
 import os
+import time
+
 from pynput import mouse, keyboard
 
-script_path = os.path.join(os.getcwd(), "script")
+from utils.get_root_path import root_path
+
+script_path = os.path.join(root_path, "script")
 
 
 class ActionRecord:

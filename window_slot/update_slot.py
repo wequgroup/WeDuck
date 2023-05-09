@@ -1,13 +1,12 @@
+import _thread
 import json
 import os
 import re
-import sys
 
 import requests
 from PySide2.QtWidgets import QMessageBox, QApplication
-import _thread
 
-root_path = os.getcwd()
+from utils.get_root_path import root_path
 
 
 class Update:
