@@ -58,7 +58,9 @@ jobs:
           access-key-secret: ${{ secrets.OSS_SECRET }}
 
       - name: Upload dmg
+        if: matrix.os == 'macos-latest'
         run: ossutil cp -rf WeDuckInstaller.dmg oss://wequ-download/
 
       - name: Upload exe
+        if: matrix.os == 'windows-latest'
         run: ossutil cp -rf WeDuckInstall.exe oss://wequ-download/
