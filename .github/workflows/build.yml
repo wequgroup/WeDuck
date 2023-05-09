@@ -51,7 +51,7 @@ jobs:
 
       - name: Create Dmg (Mac)
         if: matrix.os == 'macos-latest'
-        run: create-dmg --volname "WeDuck" --window-pos 200 220 --window-size 500 300 --icon-size 100 --icon "WeDuck.app" 100 100 --hide-extension "WeDuck.app" --app-drop-link 300 100 "WeDuckInstaller.dmg" "dist/WeDuck.app"
+        run: create-dmg --volname "WeDuck" --window-pos 200 220 --window-size 500 300 --icon-size 100 --icon "WeDuck.app" 100 100 --hide-extension "WeDuck.app" --app-drop-link 300 100 "WeDuckInstall.dmg" "dist/WeDuck.app"
 
       - name: Upload dmg
         if: matrix.os == 'macos-latest'
