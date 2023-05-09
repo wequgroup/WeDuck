@@ -28,7 +28,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.os = sys.platform
         self.device = Login(self)
         self.script = Script(self)
-        self.icon = QIcon(os.path.join(root_path, "icon.png"))
+        if sys.platform == "darwin":
+            self.icon = QIcon(os.path.join(root_path, "icon.icns"))
+        else:
+            self.icon = QIcon(os.path.join(root_path, "icon.png"))
         self.init_app()
         self.init_connect()
 

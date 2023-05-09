@@ -1,10 +1,11 @@
+import argparse
 import os
 import sys
-import argparse
 
 if sys.platform == "darwin":
     os.environ['QT_MAC_WANTS_LAYER'] = '1'
 from PySide2.QtCore import QLockFile
+from utils.get_root_path import root_path
 from PySide2.QtWidgets import QApplication, QMessageBox
 from window import MainWindow
 
@@ -14,7 +15,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if_mini = args.if_mini
     app = QApplication(sys.argv)
-    lockFile = QLockFile(os.path.join(os.getcwd(), "WeDuck.app.lock"))
+    lockFile = QLockFile(os.path.join(root_path, "WeDuck.app.lock"))
     if lockFile.tryLock(2000):
         win = MainWindow()
         win.setMinimumSize(407, 391)
