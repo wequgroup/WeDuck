@@ -5,9 +5,7 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    permissions:
-      contents: write
-      packages: write
+    permissions: write-all
 
     strategy:
       matrix:
@@ -55,22 +53,14 @@ jobs:
 
       - name: Upload dmg
         if: matrix.os == 'macos-latest'
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: softprops/action-gh-release@v1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          name: Release ${{ github.ref }}
-          title: WeDuckInstaller
           prerelease: false
           files: WeDuckInstall.dmg
 
       - name: Upload exe
         if: matrix.os == 'windows-latest'
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: softprops/action-gh-release@v1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          name: Release ${{ github.ref }}
-          title: WeDuckInstaller
           prerelease: false
           files: WeDuckInstall.exe
