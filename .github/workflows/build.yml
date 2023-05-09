@@ -5,6 +5,9 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+      packages: write
 
     strategy:
       matrix:
