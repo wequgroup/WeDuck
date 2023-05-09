@@ -52,26 +52,22 @@ jobs:
 
       - name: Upload dmg
         if: matrix.os == 'macos-latest'
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: marvinpinto/action-automatic-releases@latest
         with:
-          tag_name: ${{ github.ref }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: 20230509
           name: Release ${{ github.ref }}
-          body: TODO New Release.
-          draft: false
+          title: WeDuckInstaller
           prerelease: false
           files: WeDuckInstall.dmg
 
       - name: Upload exe
         if: matrix.os == 'windows-latest'
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: marvinpinto/action-automatic-releases@latest
         with:
-          tag_name: ${{ github.ref }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: 20230509
           name: Release ${{ github.ref }}
-          body: TODO New Release.
-          draft: false
+          title: WeDuckInstaller
           prerelease: false
           files: WeDuckInstall.exe
