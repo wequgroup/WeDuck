@@ -2,13 +2,14 @@
 import os
 import subprocess
 import sys
-import time
+import datetime
 
 local = False  # False代表Github打包环境，True代表本地
 
 print("Create Version")
 root_path = os.getcwd()
-VERSION = time.strftime("%Y%m%d%H", time.localtime())
+time_now = str((datetime.datetime.utcnow() + datetime.timedelta(hours=8)))
+VERSION = time_now.replace("-", "").replace(" ", "")[0:10]
 print("version is " + VERSION)
 
 print("Set Config Version")
