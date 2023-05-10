@@ -48,7 +48,7 @@ InstallDir "$PROGRAMFILES\WeDuck"
 InstallDirRegKey HKLM "${PRODUCT_UNINST_KEY}" "UninstallString"
 ShowInstDetails show
 ShowUnInstDetails show
-BrandingText "微趣鸭"
+BrandingText "WeDuck"
 
 Section "MainSection" SEC01
   SetOutPath "$INSTDIR"

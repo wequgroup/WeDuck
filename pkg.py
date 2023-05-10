@@ -3,6 +3,7 @@ import os
 import subprocess
 import sys
 import datetime
+import codecs
 
 local = False  # False代表Github打包环境，True代表本地
 
@@ -21,14 +22,13 @@ VERSION = %s""" % VERSION)
 
 def set_window_nsi():
     print("Set install nsi Version")
-    with open(os.path.join(root_path, "install_tpl.nsi"), "r", encoding="utf8") as n1:
+    with codecs.open(os.path.join(root_path, "install_tpl.nsi"), "r", encoding="utf8") as n1:
         nsi = n1.read()
         nsi = nsi.replace("WeDuckVersion", VERSION)
 
-    with open(os.path.join(root_path, "install.nsi"), "w", encoding="utf8") as n2:
+    with codecs.open(os.path.join(root_path, "install.nsi"), "w", encoding="gbk") as n2:
         n2.write(nsi)
     print("Set install nsi Version Ok")
-
 
 def local_rm(dirpath):
     if os.path.exists(dirpath):

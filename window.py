@@ -2,7 +2,7 @@ import _thread
 import os
 import sys
 import time
-
+from g import VERSION
 from PySide2.QtCore import Slot
 from PySide2.QtGui import QColor, QIcon
 from PySide2.QtWidgets import QMainWindow, QSystemTrayIcon, \
@@ -24,7 +24,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 日志颜色
         c = QColor(112, 128, 105)
         self.LogList.setTextColor(c)
-        self.version = config.get("app", "version")
+        self.version = str(VERSION)
         self.os = sys.platform
         self.device = Login(self)
         self.script = Script(self)
@@ -107,7 +107,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @Slot()
     def update_btn_click(self):
-        print("ddd")
         up = Update(self)
         up.update(self.version, self.os)
 
