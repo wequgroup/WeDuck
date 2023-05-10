@@ -20,11 +20,11 @@ VERSION = %s""" % VERSION)
 
 def set_window_nsi():
     print("Set install nsi Version")
-    with open(os.path.join(root_path, "install_tpl.nsi"), "r") as f:
-        nsi = f.read().replace("WeDuck Version", VERSION)
+    with open(os.path.join(root_path, "install_tpl.nsi"), "r", encoding="utf-8") as n1:
+        nsi = n1.read().replace("WeDuck Version", VERSION)
 
-    with open(os.path.join(root_path, "install.nsi"), "w") as f:
-        f.write(nsi)
+    with open(os.path.join(root_path, "install.nsi"), "w", encoding="utf-8") as n2:
+        n2.write(nsi)
     print("Set install nsi Version Ok")
 
 
