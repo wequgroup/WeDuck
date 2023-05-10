@@ -8,7 +8,7 @@ local = False  # False代表Github打包环境，True代表本地
 
 print("Create Version")
 root_path = os.getcwd()
-VERSION = time.strftime("%Y%m%d%H%M", time.localtime())
+VERSION = time.strftime("%Y%m%d%H", time.localtime())
 print("version is " + VERSION)
 
 print("Set Config Version")
