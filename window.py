@@ -107,6 +107,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @Slot()
     def update_btn_click(self):
+        print("ddd")
         up = Update(self)
         up.update(self.version, self.os)
 

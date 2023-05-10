@@ -2,6 +2,7 @@ import _thread
 import json
 import os
 import re
+import sys
 
 import requests
 from PySide2.QtWidgets import QMessageBox, QApplication
@@ -13,10 +14,10 @@ class Update:
     def __init__(self, win):
         self.win = win
 
-    def update(self, version, os):
+    def update(self, version, app_os):
         res = requests.get("https://api.wequ.net/app/duck/post/4").json()
         app_info = json.loads(res["data"]["value"])
-        app_os_info = app_info[os]
+        app_os_info = app_info[app_os]
         if int(version) < int(app_os_info["version"]):
             update_info = "有新版本[{}]: {}<br><br>更新内容<br>{}" \
                 .format("强制更新" if app_info["update_type"] == 0 else "选择更新", app_os_info["version"],
@@ -37,6 +38,12 @@ class Update:
             self.win.UpdateButton.setText("没有发现新版本")
         return False
 
+    def install_download(self, root_path, file_name):
+        if sys.platform == "win32":
+            os.system(os.path.join(root_path, file_name))
+        else:
+            os.system("open " + os.path.join(root_path, file_name))
+
     def download(self, url: str):
         if "lanzou" in url:
             url = self.get_lanzou(url)
@@ -55,7 +62,7 @@ class Update:
                     self.win.UpdateButton.setText("正在更新： %s" % str(int(size / content_size * 100)) + "%")
             self.win.LoginButton.setText("更新成功")
             self.win.UpdateButton.setText("更新成功")
-            _thread.start_new_thread(os.system, (os.path.join(root_path, file_name),))
+            _thread.start_new_thread(self.install_download, (root_path, file_name))
             app = QApplication.instance()
             app.quit()
 
