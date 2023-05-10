@@ -1,6 +1,6 @@
 ; 安装程序初始定义常量
 !define PRODUCT_NAME "WeDuck"
-!define PRODUCT_VERSION "WeDuck Version"
+!define PRODUCT_VERSION "WeDuckVersion"
 !define PRODUCT_PUBLISHER "微趣奈特"
 !define PRODUCT_WEB_SITE "https://wequ.net"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\WeDuck.exe"

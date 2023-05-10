@@ -12,7 +12,7 @@ VERSION = time.strftime("%Y%m%d%H", time.localtime())
 print("version is " + VERSION)
 
 print("Set Config Version")
-with open(os.path.join(root_path, "g.py"), "w", encoding="utf-8") as f:
+with open(os.path.join(root_path, "g.py"), "w", encoding="utf8") as f:
     f.write(
         """STOP_MQ = False
 VERSION = %s""" % VERSION)
@@ -20,10 +20,11 @@ VERSION = %s""" % VERSION)
 
 def set_window_nsi():
     print("Set install nsi Version")
-    with open(os.path.join(root_path, "install_tpl.nsi"), "r", encoding="utf-8") as n1:
-        nsi = n1.read().replace("WeDuck Version", VERSION)
+    with open(os.path.join(root_path, "install_tpl.nsi"), "r", encoding="utf8") as n1:
+        nsi = n1.read()
+        nsi = nsi.replace("WeDuckVersion", VERSION)
 
-    with open(os.path.join(root_path, "install.nsi"), "w", encoding="utf-8") as n2:
+    with open(os.path.join(root_path, "install.nsi"), "w", encoding="utf8") as n2:
         n2.write(nsi)
     print("Set install nsi Version Ok")
 
