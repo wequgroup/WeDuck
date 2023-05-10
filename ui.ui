@@ -190,7 +190,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
+        <y>160</y>
         <width>351</width>
         <height>111</height>
        </rect>
@@ -274,17 +274,17 @@
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label_9">
+     <widget class="QLabel" name="MacTips">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>230</y>
+        <y>110</y>
         <width>351</width>
         <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Mac系统用户请在系统设置-安全与隐私-辅助功能-添加应用&lt;br/&gt;然后在输入监控-添加应用，否则无法录制脚本&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>

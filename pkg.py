@@ -1,26 +1,49 @@
 # -*- coding: utf-8 -*-
-
 import os
 import subprocess
 import sys
+import time
 
-print("Preparing")
+local = False  # False代表Github打包环境，True代表本地
+
+print("Create Version")
 root_path = os.getcwd()
+VERSION = time.strftime("%Y%m%d%H%M", time.localtime())
+print("version is " + VERSION)
+
+print("Set Config Version")
+with open(os.path.join(root_path, "g.py"), "w", encoding="utf-8") as f:
+    f.write(
+        """STOP_MQ = False
+VERSION = %s""" % VERSION)
+
+
+def set_window_nsi():
+    print("Set install nsi Version")
+    with open(os.path.join(root_path, "install_tpl.nsi"), "r") as f:
+        nsi = f.read().replace("WeDuck Version", VERSION)
+
+    with open(os.path.join(root_path, "install.nsi"), "w") as f:
+        f.write(nsi)
+    print("Set install nsi Version Ok")
 
 
 def local_rm(dirpath):
     if os.path.exists(dirpath):
-        files = os.listdir(dirpath)
-        for file in files:
-            filepath = os.path.join(dirpath, file).replace("\\", '/')
-            if os.path.isdir(filepath):
-                local_rm(filepath)
-            else:
-                os.remove(filepath)
         try:
-            os.rmdir(dirpath)
+            files = os.listdir(dirpath)
+            for file in files:
+                filepath = os.path.join(dirpath, file).replace("\\", '/')
+                if os.path.isdir(filepath):
+                    local_rm(filepath)
+                else:
+                    os.remove(filepath)
+            try:
+                os.rmdir(dirpath)
+            except:
+                pass
         except:
-            pass
+            os.remove(dirpath)
 
 
 if os.path.exists(os.path.join(root_path, "build")):
@@ -36,6 +59,7 @@ pyinstaller_path = ""
 pkg_shell = ""
 print(sys.platform)
 if sys.platform == 'win32':
+    set_window_nsi()
     pkg_shell = '-y -i="icon.ico" -D -w main.py --add-data="icon.png;." --add-data="icon.ico;."'
     pyinstaller_path = os.path.join(root_path, "venv", "Scripts", "pyinstaller")
     del_mod_list = ["d3dcompiler_47.dll", "Qt5Pdf.dll", "Qt5Quick.dll", "opengl32sw.dll",
@@ -47,7 +71,6 @@ else:
     pyinstaller_path = os.path.join(root_path, "venv", "bin", "pyinstaller")
     del_mod_list = []
 
-local = False
 if local is not True:
     pyinstaller_path = "pyinstaller"
 
@@ -63,10 +86,11 @@ for d in del_mod_list:
 
 print("delete translate")
 local_rm(os.path.join(del_path, "translations"))
+
+if local is True:
+    print("delete nsi")
+    local_rm(os.path.join(root_path, "install.nsi"))
+    print("delete spec")
+    local_rm(os.path.join(root_path, "WeDuck.spec"))
+
 print("done dir:" + os.path.join(os.getcwd(), "dist", "WeDuck"))
-
-"""
-
-create-dmg --volname "WeDuck" --window-pos 200 220 --window-size 500 300 --icon-size 100 --icon "WeDuck.app" 100 100 --hide-extension "WeDuck.app" --app-drop-link 300 100 "WeDuckInstaller.dmg" "dist/WeDuck.app"
-
-"""

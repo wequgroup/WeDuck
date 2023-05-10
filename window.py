@@ -50,10 +50,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         device_id = config.get("device", "id")
         device_password = config.get("device", "password")
         auto_online = config.get("device", "auto_online")
+        # 设置mac提示
+        if sys.platform == "darwin":
+            self.MacTips.setText("Mac系统用户请在系统设置-安全与隐私-辅助功能-添加应用<br>然后在输入监控-添加应用，否则无法录制脚本")
         if len(device_password) == 6 and len(device_id) == 8:
             self.DeviceIDEdit.setText(device_id)
             self.DevicePassEdit.setText(device_password)
-
         if auto_online == "yes":
             self.AutoOnlineCheckBox.setChecked(True)
             self.login_btn_click()
