@@ -1,6 +1,5 @@
 import requests
-from PySide2.QtCore import QThread, Signal
-from PySide2.QtWidgets import QMainWindow, QApplication
+from PySide2.QtWidgets import QMainWindow
 from PySide2.QtWidgets import QMessageBox
 
 import g
@@ -8,11 +7,9 @@ from utils import config
 from utils.mqtt import MQTT
 
 
-class Login(QThread):
-    login_signal = Signal()
+class Login:
 
     def __init__(self, window: QMainWindow):
-        super().__init__()
         self.win: QMainWindow = window
         self.device_id: str = ""
         self.device_password: str = ""
@@ -48,20 +45,26 @@ class Login(QThread):
             self.msg.warning(self.win, "提示", err_msg)
             self.init_input()
             return False
+        try:
+            res: requests = requests.get("https://api.wequ.net/app/duck/device/client/{}/{}".
+                                         format(self.device_id, self.device_password), timeout=5)
+            if res.json().get("data") is None:
+                err_msg: str = "未查询到{}设备信息".format(self.device_id)
+                self.win.log(err_msg)
+                self.msg.warning(self.win, "提示", err_msg)
+                self.init_input()
+                return False
 
-        res: requests = requests.get("https://api.wequ.net/app/duck/device/client/{}/{}".
-                                     format(self.device_id, self.device_password))
-        if res.json().get("data") is None:
-            err_msg: str = "未查询到{}设备信息".format(self.device_id)
+            config.set("device", "id", self.device_id)
+            config.set("device", "password", self.device_password)
+            if self.win.AutoOnlineCheckBox.isChecked():
+                config.set("device", "auto_online", "yes")
+            else:
+                config.set("device", "auto_online", "off")
+            return True
+        except requests.exceptions.Timeout:
+            err_msg: str = "网络超时，请检查网络"
             self.win.log(err_msg)
             self.msg.warning(self.win, "提示", err_msg)
             self.init_input()
             return False
-
-        config.set("device", "id", self.device_id)
-        config.set("device", "password", self.device_password)
-        if self.win.AutoOnlineCheckBox.isChecked():
-            config.set("device", "auto_online", "yes")
-        else:
-            config.set("device", "auto_online", "off")
-        return True
