@@ -4,9 +4,9 @@ import time
 
 from pynput import mouse, keyboard
 
-from utils.get_root_path import root_path
+from utils.get_root_path import home_path
 
-script_path = os.path.join(root_path, "script")
+script_path = os.path.join(home_path, "script")
 
 
 class ActionRecord:

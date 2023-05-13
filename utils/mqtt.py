@@ -2,11 +2,12 @@ import _thread
 import json
 import time
 from threading import Event
-from utils.base_play import Play
+
 import paho.mqtt.client as mqtt
 from PySide2.QtWidgets import QMainWindow
 
 import g
+from utils.base_play import Play
 
 
 class MQTT:
@@ -48,19 +49,14 @@ class MQTT:
 
     def on_message(self, client, userdata, rc):
         msg = rc.payload
-        params = json.loads(msg)
-        if type(params) is not int:
-            shell_play = Play(params, self.win)
-            shell_play.run()
-        # try:
-        #     params = json.loads(msg)
-        #     if type(params) is not int:
-        #         shell_play = Play(params, self.win)
-        #         shell_play.run()
-        # except Exception as e:
-        #     print(e)
-        #     self.win.log("指令已下发但未执行：" + str(e))
-        #     return False
+        try:
+            params = json.loads(msg)
+            if type(params) is not int:
+                shell_play = Play(params, self.win)
+                _thread.start_new_thread(shell_play.run, ())
+        except Exception as e:
+            self.win.log("指令已下发但未执行：" + str(e))
+            return False
         return True
 
     def ping(self):

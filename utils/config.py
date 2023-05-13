@@ -1,8 +1,9 @@
 import configparser
 from os import path
-from utils.get_root_path import root_path
 
-ini_path = path.join(root_path, "config.ini")
+from utils.get_root_path import home_path
+
+ini_path = path.join(home_path, "config.ini")
 
 if path.exists(ini_path) is not True:
     with open(ini_path, "w") as f:

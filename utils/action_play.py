@@ -37,7 +37,6 @@ class ActionPlay:
                     pause_time = next_movement - _time
                 except IndexError as e:
                     pause_time = 1
-
                 if action == "pressed_key" or action == "released_key":
                     key = obj['key'] if 'Key.' not in obj['key'] else special_keys[obj['key']]
                     if action == "pressed_key":

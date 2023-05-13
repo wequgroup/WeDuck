@@ -1,7 +1,7 @@
 import os
 import time
 from PySide2.QtWidgets import QFileDialog
-
+from utils.get_root_path import home_path
 from utils.action_record import ActionRecord
 
 
@@ -21,7 +21,7 @@ class Script:
         self.win.ScriptNameEdit.setText(self.script_name)
 
     def show_script(self):
-        script_path = os.path.join(os.getcwd(), "script")
+        script_path = os.path.join(home_path, "script")
         script_dialog = QFileDialog()
         script_dialog.getOpenFileNames(self.win, "微趣鸭录制的脚本", script_path)
         self.win.log("打开录制脚本路径：" + script_path)

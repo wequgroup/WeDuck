@@ -1,8 +1,9 @@
-from utils.action_play import ActionPlay
-from utils.shell_play import ShellPlay
 import os
-import json
-script_path = os.path.join(os.getcwd(), "script")
+
+from utils.action_play import ActionPlay
+from utils.get_root_path import home_path
+from utils.shell_play import ShellPlay
+script_path = os.path.join(home_path, "script")
 
 
 class Play:
@@ -27,7 +28,6 @@ class Play:
         self.win.log("开始执行操作回放:" + self.shellContent)
         with open(os.path.join(script_path, self.shellContent + ".txt"), encoding="utf-8") as s:
             script = s.read()
-        self.win.hide()
         a = ActionPlay(script)
         a.run()
         self.win.log("操作回放执行结束")
