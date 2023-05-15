@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+import codecs
+import datetime
 import os
 import subprocess
 import sys
-import datetime
-import codecs
 
 local = False  # False代表Github打包环境，True代表本地
 
@@ -29,6 +29,7 @@ def set_window_nsi():
     with codecs.open(os.path.join(root_path, "install.nsi"), "w", encoding="gbk") as n2:
         n2.write(nsi)
     print("Set install nsi Version Ok")
+
 
 def local_rm(dirpath):
     if os.path.exists(dirpath):
@@ -96,3 +97,8 @@ if local is True:
     local_rm(os.path.join(root_path, "WeDuck.spec"))
 
 print("done dir:" + os.path.join(os.getcwd(), "dist", "WeDuck"))
+
+if sys.platform == "darwin":
+    os.system('''
+    create-dmg --volname "WeDuck" --window-pos 200 220 --window-size 500 300 --icon-size 100 --icon "WeDuck.app" 100 100 --hide-extension "WeDuck.app" --app-drop-link 300 100 "WeDuckInstall.dmg" "dist/WeDuck.app"
+    ''')
