@@ -96,9 +96,9 @@ if local is True:
     print("delete spec")
     local_rm(os.path.join(root_path, "WeDuck.spec"))
 
-print("done dir:" + os.path.join(os.getcwd(), "dist", "WeDuck"))
+    if sys.platform == "darwin":
+        os.system('''
+        create-dmg --volname "WeDuck" --window-pos 200 220 --window-size 500 300 --icon-size 100 --icon "WeDuck.app" 100 100 --hide-extension "WeDuck.app" --app-drop-link 300 100 "WeDuckInstall.dmg" "dist/WeDuck.app"
+        ''')
 
-if sys.platform == "darwin":
-    os.system('''
-    create-dmg --volname "WeDuck" --window-pos 200 220 --window-size 500 300 --icon-size 100 --icon "WeDuck.app" 100 100 --hide-extension "WeDuck.app" --app-drop-link 300 100 "WeDuckInstall.dmg" "dist/WeDuck.app"
-    ''')
+print("done dir:" + os.path.join(os.getcwd(), "dist", "WeDuck"))
